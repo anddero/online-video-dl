@@ -1,0 +1,56 @@
+documentation:
+  - The only key that is scanned and considered in this file
+  - is the "courses" key below.
+  - The "courses" key can contain other arbitrary keys which
+  - will guide how the resulting video files will be named.
+  - The most important rule is that under each inner-most custom key,
+  - the video links must be provided as an array and will have
+  - postfixes "Video 1.mp4", "Video 2.mp4", etc appended to the
+  - resulting file names automatically.
+  - The nesting does not have to have the same depth in all
+  - subsections. The way the program works is that it scans each
+  - key and its subkeys recursively and individually, until it
+  - reaches a list. Then it treats the list as video stream URLs
+  - and uses the hierarchy of the keys under which this list lies,
+  - to calculate the resulting file names.
+  - Tested with HLS (.m3u8) and MPEG-DASH (.mpd) streams, but any
+  - file formats work that are supported by `video_dl` which is
+  - the underlying command-line tool used to fetch each video.
+  - The hierarchy below will result in the following video
+  - files.
+  -   Favourites - Week 1 - Day 1 - Video 1.mp4
+  -   Favourites - Week 1 - Day 1 - Video 2.mp4
+  -   Favourites - Week 1 - Day 2 - Video 1.mp4
+  -   Favourites - Week 4 - Video 1.mp4
+  -   Another package - AAA - Video 1.mp4
+  -   Another package - AAA - Video 2.mp4
+  -   Another package - BBB - First - Video 1.mp4
+  -   Another package - BBB - First - Video 2.mp4
+  -   Another package - BBB - Third - Video 1.mp4
+  -   Another package - BBB - Second - Video 1.mp4
+  -   Just one video - Video 1.mp4
+
+courses:
+  Favourites:
+    Week 1:
+      Day 1:
+        - https://kinescope.io/200615537/master.m3u8
+        - https://kinescope.io/200615477/master.m3u8
+      Day 2:
+        - https://kinescope.io/200615477/master.m3u8
+    Week 4:
+      - https://kinescope.io/200615537/master.m3u8
+  Another package:
+    AAA:
+      - https://kinescope.io/200615895/master.m3u8
+      - https://kinescope.io/200615876/master.m3u8
+    BBB:
+      First:
+        - https://kinescope.io/200615935/master.m3u8
+        - https://kinescope.io/200615881/master.m3u8
+      Third:
+        - https://kinescope.io/200615857/master.m3u8
+      Second:
+        - https://kinescope.io/200615872/master.m3u8
+  Just one video:
+    - https://kinescope.io/200615872/master.m3u8
