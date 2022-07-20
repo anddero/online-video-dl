@@ -55,3 +55,8 @@ If you have recently installed it and added it to path, but still get the error,
 
 Solution: Check the prerequisites, `ffmpeg` command-line utility should be installed and added to path in order for `youtube_dl` to be able to use it.
 If you have recently installed it and added it to path, but still get the error, restart your IDE or terminal.
+
+> Videos are several gigabytes in size, even though worst quality flags are given to `youtube_dl`.
+
+This is a known issue with `youtube_dl`, when downloading `.mpd` streams. If available, find a URL to another format such as `.m3u8`.
+Sometimes simply editing the end of the URL to the resource from `.mpd` to `m3u8` helps, because some servers store content in multiple formats.
