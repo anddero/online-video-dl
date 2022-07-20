@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit
 //const val PREV_LINE_ESCAPE_CODE = "\u0033[F"
 //const val LINE_START_ESCAPE_CODE = "\r"
 const val MAX_PROCESS_COUNT = 5
+const val PYTHON_COMMAND = "python3"
 
 fun main() { // TODO Thread pool
     var completeCount = 0
@@ -75,7 +76,7 @@ fun printState(
 
 fun startDownloadMp4VideoProcess(outVideoFileName: String, srcMpdFileUrl: String): Pair<ViewLastLineStream, Process> {
     val builder = ProcessBuilder(
-        "python3",
+        PYTHON_COMMAND,
         "-m", "youtube_dl",
         "--merge-output-format", "mp4",
         "-f", "worstvideo+worstaudio",
